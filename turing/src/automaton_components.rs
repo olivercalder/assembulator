@@ -32,3 +32,13 @@ pub enum MoveDirection {
     Right,
     Stay,
 }
+
+/// The states available to be used in automata, including special states.
+#[derive(Debug)]
+pub enum State<'a> {
+    Start,
+    Accept,
+    Reject,
+    Halt,
+    Other(&'a str),
+}
