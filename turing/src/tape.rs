@@ -40,7 +40,7 @@ impl Tape {
     /// Moves the head position left one cell.
     pub fn left(&mut self) -> () {
         if self.position == 0 {
-            self.array.push_front(Symbol::Empty);
+            self.array.push_front(Symbol::Blank);
         } else {
             self.position -= 1;
         }
@@ -49,7 +49,7 @@ impl Tape {
     /// Moves the head position right one cell.
     pub fn right(&mut self) -> () {
         if self.position == self.array.len() - 1 {
-            self.array.push_back(Symbol::Empty);
+            self.array.push_back(Symbol::Blank);
         }
         self.position += 1;
     }
