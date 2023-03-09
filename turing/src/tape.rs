@@ -1,7 +1,7 @@
 //! This module simulates an infinite tape with a head which can move, read, and write.
 
-use std::collections::VecDeque;
 use crate::automaton_components::{MoveDirection, Symbol};
+use std::collections::VecDeque;
 
 /// An infinite tape with a head which can move, read, and write.
 ///
@@ -18,7 +18,10 @@ impl Tape {
     /// Creates a new tape with contents loaded from the specified string slice.
     pub fn new(contents: &str) -> Self {
         Self {
-            array: contents.chars().map(|x| Symbol::Is(x)).collect::<VecDeque<Symbol>>(),
+            array: contents
+                .chars()
+                .map(|x| Symbol::Is(x))
+                .collect::<VecDeque<Symbol>>(),
             position: 0,
         }
     }
@@ -75,6 +78,9 @@ impl Tape {
     /// separated by some number of empty cells, then the symbols in those two full cells will be
     /// adjacent in the output string.
     pub fn output_tape(&self) -> String {
-        self.array.iter().filter_map(|s| s.to_option()).collect::<String>()
+        self.array
+            .iter()
+            .filter_map(|s| s.to_option())
+            .collect::<String>()
     }
 }

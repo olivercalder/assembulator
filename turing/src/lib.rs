@@ -60,11 +60,46 @@ mod tests {
         let q0 = State::Start;
         let qh = State::Halt;
         let q1 = State::Other(String::from("q1"));
-        table.add_transition(&q0, &q1, &[Symbol::Is('h')], false, Some(Symbol::Is('H')), MoveDirection::Right);
-        table.add_transition(&q0, &q1, &[Symbol::Is('H')], false, None, MoveDirection::Right);
-        table.add_transition(&q1, &qh, &[Symbol::Is('i')], false, None, MoveDirection::Stay);
-        table.add_transition(&q1, &qh, &[Symbol::Is('I')], false, Some(Symbol::Is('i')), MoveDirection::Stay);
-        table.add_transition(&q0, &qh, &[Symbol::Is('h'), Symbol::Is('H')], true, Some(Symbol::Blank), MoveDirection::Stay);
+        table.add_transition(
+            &q0,
+            &q1,
+            &[Symbol::Is('h')],
+            false,
+            Some(Symbol::Is('H')),
+            MoveDirection::Right,
+        );
+        table.add_transition(
+            &q0,
+            &q1,
+            &[Symbol::Is('H')],
+            false,
+            None,
+            MoveDirection::Right,
+        );
+        table.add_transition(
+            &q1,
+            &qh,
+            &[Symbol::Is('i')],
+            false,
+            None,
+            MoveDirection::Stay,
+        );
+        table.add_transition(
+            &q1,
+            &qh,
+            &[Symbol::Is('I')],
+            false,
+            Some(Symbol::Is('i')),
+            MoveDirection::Stay,
+        );
+        table.add_transition(
+            &q0,
+            &qh,
+            &[Symbol::Is('h'), Symbol::Is('H')],
+            true,
+            Some(Symbol::Blank),
+            MoveDirection::Stay,
+        );
         let t1 = table.get_transition(&q0, Symbol::Is('h')).unwrap();
         assert_eq!(t1.get_next_state(), &q1);
         assert_eq!(t1.get_write_symbol(), Some(Symbol::Is('H')));
